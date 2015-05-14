@@ -107,7 +107,12 @@ namespace TypingTest
             inputBox.SelectionStart = 0;    //make sure nothing is being highlighted extraneously when the test is over
             inputBox.SelectionLength = 0;
 
-            errorCount += (inputBox.Text.Length - promptLabel.Text.Length); //any extra input characters due to copy-paste?
+            //any extra input characters due to copy-paste? Handle them here
+            int extraErrors = (inputBox.Text.Length - promptLabel.Text.Length);
+            inputBox.SelectionStart = promptLabel.Text.Length;  
+            inputBox.SelectionLength = extraErrors-1; //choose all of the extra characters, which must be error
+            inputBox.SelectionBackColor = Color.Red;    //highlight the error in red
+            errorCount += extraErrors; 
 
             //now we calculate error percentage and display it
             errorPercentLabel.Text = "Error Percentage: " + ( (errorCount * 100.0f) / (promptLabel.Text.Length) ).ToString("F2") + "%";
