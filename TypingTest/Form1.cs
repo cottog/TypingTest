@@ -110,7 +110,7 @@ namespace TypingTest
             //any extra input characters due to copy-paste? Handle them here
             int extraErrors = (inputBox.Text.Length - promptLabel.Text.Length);
             inputBox.SelectionStart = promptLabel.Text.Length;  
-            inputBox.SelectionLength = extraErrors-1; //choose all of the extra characters, which must be error
+            inputBox.SelectionLength = extraErrors; //choose all of the extra characters, which must be error
             inputBox.SelectionBackColor = Color.Red;    //highlight the error in red
             errorCount += extraErrors; 
 
